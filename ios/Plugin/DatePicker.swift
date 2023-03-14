@@ -11,12 +11,12 @@ public class DatePicker {
     public var background: UIView
     public var effect: UIVisualEffectView
     public var options: DatePickerOptions
-    
+
     private var buttonHeight: CGFloat = 40
     private var padding: CGFloat = 0
-    
+
     private var view: UIView
-    
+
     init(options: DatePickerOptions, view: UIView) {
         self.view = view
         self.options = options
@@ -28,18 +28,18 @@ public class DatePicker {
         line = UIView()
         background = UIView()
         effect = UIVisualEffectView()
-        
+
         if #available(iOS 11.0, *), let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first {
             padding = window.safeAreaInsets.bottom
         }
-        
+
         prepareTitle()
         preparePicker()
         prepareAlert()
         prepareLine()
         prepareButtons()
         prepareBackground()
-        
+
         if (options.style != "inline") {
             alert.addSubview(title)
         }
@@ -49,7 +49,7 @@ public class DatePicker {
         alert.addSubview(done)
         background.addSubview(alert)
         setPickerTheme()
-        
+
         if (options.style == "inline") {
             alert.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
             self.alert.alpha = 0
@@ -64,7 +64,8 @@ public class DatePicker {
             }, completion: nil)
         }
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
-            self.effect.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+             self.effect.effect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+             self.effect.alpha = 0.5
         }, completion: nil)
     }
     public func dismiss() {
@@ -90,7 +91,7 @@ public class DatePicker {
         title.frame.size.width = view.frame.width
         title.frame.size.height = 40
         title.textAlignment = .center
-        title.text = titleChange(picker.date)
+        title.text = options.title ?? titleChange(picker.date)
     }
     private func preparePicker() {
         if #available(iOS 14.0, *), (options.style == "inline") {
@@ -128,7 +129,7 @@ public class DatePicker {
         } else {
             picker.datePickerMode = UIDatePicker.Mode.time
         }
-        
+
         picker.addTarget(self, action: #selector(self.datePickerChanged(picker:)), for: .valueChanged)
     }
     private func prepareAlert() {
@@ -148,7 +149,7 @@ public class DatePicker {
             alert.frame.origin.x = 0
             alert.frame.origin.y = view.frame.height - alert.frame.height
         }
-        
+
     }
     private func prepareBackground() {
         effect = UIVisualEffectView()
@@ -174,7 +175,7 @@ public class DatePicker {
         cancel.setTitle(options.cancelText, for: .normal)
         done.contentVerticalAlignment = .center
         cancel.contentVerticalAlignment = .center
-        
+
         if (options.style == "inline") {
             done.frame.origin = CGPoint(x: size.width, y: picker.frame.height + 1)
             cancel.frame.origin = CGPoint(x: 0, y: picker.frame.height + 1)
@@ -212,29 +213,29 @@ public class DatePicker {
             buttonBgColor = "#121212"
             buttonFontColor =  "#fafafa"
         }
-        
+
         let btFontColor = UIColor(fromHex: options.buttonFontColor ?? buttonFontColor)
         let btBgColor = UIColor(fromHex: options.buttonBgColor ?? buttonBgColor)
         let tltFontColor = UIColor(fromHex: options.titleFontColor ?? titleFontColor)
         let tltBgColor = UIColor(fromHex: options.titleBgColor ?? titleBgColor)
         let alertBgColor = UIColor(fromHex: options.bgColor ?? bgColor)
-        
+
         cancel.setTitleColor(btFontColor, for: .normal)
         cancel.backgroundColor = btBgColor
         done.setTitleColor(btFontColor, for: .normal)
         done.backgroundColor = btBgColor
-        
+
         if #available(iOS 13.0, *) {
             picker.overrideUserInterfaceStyle = self.options.theme == "dark" ? .dark : .light
         } else {
             let pickerFontColor = UIColor(fromHex: fontColor)
             picker.setValue(pickerFontColor, forKey: "textColor")
         }
-        
+
         if let color = options.fontColor {
             picker.setValue(UIColor(fromHex: color), forKey: "textColor")
         }
-        
+
         title.textColor = tltFontColor
         title.backgroundColor = tltBgColor
         alert.backgroundColor = alertBgColor
@@ -253,7 +254,7 @@ public class DatePicker {
             let dateFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: locale)!
 
             let is24h = dateFormat.firstIndex(of: "a") == nil
-            
+
             var format: String = options.is24h || is24h ? "E, MMM d, yyyy HH:mm" : "E, MMM d, yyyy hh:mm a"
             if (options.mode == "time") {
                 format = options.is24h || is24h ? "HH:mm" : "hh:mm a"
@@ -264,5 +265,5 @@ public class DatePicker {
         }
         return self.options.title!
     }
-    
+
 }
