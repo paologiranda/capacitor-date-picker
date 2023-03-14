@@ -3,4 +3,13 @@
     <style name="MaterialLightTheme" parent="android:Theme.Material.Light.Dialog.Alert"></style>
     <style name="SpinnerDarkTheme" parent="android:Theme.Holo.Dialog"></style>
     <style name="SpinnerLightTheme" parent="android:Theme.Holo.Light.Dialog"></style>
+
+    <style name="MorningCapitalDatePicker" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">@color/colorMorningCapital</item>
+    </style>
+
+    <style name="LaserwallDatePicker" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">@color/colorLaserwall</item>
+    </style>
+
 </resources>

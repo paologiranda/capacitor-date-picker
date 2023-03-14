@@ -23,6 +23,12 @@ public class DatePickerTheme {
             case "legacyLight":
                 result = R.style.SpinnerLightTheme;
                 break;
+            case "MorningCapitalDatePicker":
+                result = R.style.MorningCapitalDatePicker;
+                break;
+            case "LaserwallDatePicker":
+                result = R.style.MorningCapitalDatePicker;
+                break;
             default:
                 result = R.style.MaterialLightTheme;
                 break;
