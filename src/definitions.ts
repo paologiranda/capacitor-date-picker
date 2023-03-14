@@ -181,6 +181,14 @@ export interface DatePickerOptions extends DatePickerBaseOptions {
    * @description Personal configs for android
    */
   android?: DatePickerBaseOptions;
+
+  /**
+   * @type {DatePickerBaseOptions}
+   * @default null
+   *
+   * @description Title
+   */
+  title?: string;
 }
 
 export interface DatePickerPlugin {
