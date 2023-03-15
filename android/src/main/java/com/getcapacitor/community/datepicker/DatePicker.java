@@ -86,6 +86,16 @@ public class DatePicker {
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
 
+       if (options.title != null) {
+          TextView textView = new TextView(context);
+          textView.setText(options.title);
+          textView.setPadding(32, 30, 0, 30);
+          textView.setTextSize(20F);
+          textView.setTextColor(Color.BLACK);
+
+          datePicker.setCustomTitle(textView);
+        }
+
         datePicker.create();
         android.widget.DatePicker picker = datePicker.getDatePicker();
         Button doneButton = datePicker.getButton(Dialog.BUTTON_POSITIVE);
