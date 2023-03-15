@@ -5,10 +5,14 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Locale;
+
+
 
 public class DatePicker {
     private Calendar calendar;
